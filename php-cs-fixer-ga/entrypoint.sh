@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-CHANGED_FILES=$(git diff master... --name-only)
+CHANGED_FILES=$(git diff origin/master... --name-only)
 
 if [[ -z "$CHANGED_FILES" ]]; then
    echo "No chnaged files have been commited"
