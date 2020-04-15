@@ -1,12 +1,15 @@
 #!/bin/sh -l
 
-CHANGED_FILES=$(git diff origin/master... --name-only)
 
-if [[ -z "$CHANGED_FILES" ]]; then
+if [[ -z "$FILES" ]]; then
    echo "No chnaged files have been commited"
    exit 0
 fi
 
-for file in $CHANGED_FILES ; do
+IFS='FILE:|'
+for file in $FILES ; do
+  if [[ -z "$file" ]]; then
+   continue
+  fi
     sh -c "/usr/local/bin/php-cs-fixer fix $file $*;"
 done
