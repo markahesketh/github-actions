@@ -14,4 +14,4 @@ runs:
     using: 'docker'
     image: 'Dockerfile'
     env:
-        FILES: ${{ steps.file_changes.outputs.files}}
+        FILES: ''
