@@ -1,0 +1,20 @@
+name: 'GitHub Action to execute scss-lint'
+description: 'Executes scss-lint'
+branding:
+  icon: 'truck'
+  color: 'purple'
+inputs:
+  level:
+    description: 'Report level for reviewdog [info,warning,error]'
+    required: false
+    default: 'error'
+  reporter:
+    description: |
+      Reporter of reviewdog command [github-pr-check,github-pr-review].
+      Default is github-pr-check.
+      github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+    required: false
+    default: 'github-pr-check'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
