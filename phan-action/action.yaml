@@ -1,0 +1,31 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+
+name: 'Venditan-Phan'
+author: 'Venditan'
+branding:
+  icon: 'crosshair'
+  color: 'green'
+description: 'Run Phan via GithubAction.'
+
+inputs:
+  auth:
+    description: Composer personal access token (to access private repositories)
+    required: true
+
+  composer_install_arguments:
+    description: Options for the install
+    required: true
+
+  phan_arguments:
+    description: Options for Phan
+    required: true
+
+  cs2pr_arguments:
+    description: Options for CS2PR
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    COMPOSER_AUTH: ${{ inputs.auth }}
