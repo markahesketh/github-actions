@@ -1,4 +1,4 @@
-FROM php:7.4-alpine
+FROM php:8.0-alpine
 
 # Install git and bash
 RUN apk add --update autoconf gcc musl-dev make bash git \
