@@ -1,0 +1,37 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+
+name: 'Venditan-PHPUnit'
+author: 'Venditan'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+description: 'Run PHPUnit via GithubAction.'
+
+inputs:
+  auth:
+    description: Composer personal access token (to access private repositories)
+    required: true
+
+  composer_install_arguments:
+    description: Options for the install
+    required: true
+
+  php_unit_arguments:
+    description: Options for PHP Unit
+    required: true
+
+  locale:
+    description: Locale to setup on the container
+    required: false
+    default: 'en_GB.UTF-8'
+
+  test_app_id:
+      description: VC Test App ID
+      required: false
+      default: 'Test'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    COMPOSER_AUTH: ${{ inputs.auth }}

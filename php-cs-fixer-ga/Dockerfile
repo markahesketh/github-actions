@@ -1,9 +1,7 @@
-FROM php:7.4-alpine
+FROM php:8.0-alpine
 
-RUN apk add --update \
-    git
-
-RUN wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.2/php-cs-fixer.phar -O php-cs-fixer \
+RUN apk add --update git \
+    && wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.2/php-cs-fixer.phar -O php-cs-fixer \
     && chmod a+x php-cs-fixer \
     && mv php-cs-fixer /usr/local/bin/php-cs-fixer
 
