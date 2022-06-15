@@ -34,7 +34,6 @@ composer install "${INPUT_COMPOSER_INSTALL_ARGUMENTS}"
 composer require --dev staabm/annotate-pull-request-from-checkstyle
 
 PHAN_ARGS="--include-analysis-file-list ${ANALYSIS_FILE_LIST} ${INPUT_PHAN_ARGUMENTS}"
-echo "${PHAN_ARGS}"
 
 # Run Phan
 ./custom/vendor/bin/phan "$PHAN_ARGS"
