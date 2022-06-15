@@ -36,7 +36,7 @@ PHAN_ARGS="--include-analysis-file-list ${ANALYSIS_FILE_LIST} ${INPUT_PHAN_ARGUM
 echo "${PHAN_ARGS}"
 
 # Run Phan
-./custom/vendor/bin/phan $PHAN_ARGS
+./custom/vendor/bin/phan "$PHAN_ARGS"
 
 # Format the output with CS2PR
-./custom/vendor/bin/cs2pr ${INPUT_CS2PR_ARGUMENTS}
+./custom/vendor/bin/cs2pr "${INPUT_CS2PR_ARGUMENTS}"
