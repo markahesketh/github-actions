@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+echo $COMPOSER_AUTH
+
 composer install ${INPUT_COMPOSER_INSTALL_ARGUMENTS}
 
 locale-gen ${INPUT_LOCALE}
