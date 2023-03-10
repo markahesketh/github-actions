@@ -16,7 +16,7 @@ inputs:
     description: Options for the install
     required: true
 
-  php_unit_arguments:
+  phpunit_arguments:
     description: Options for PHP Unit
     required: true
 
