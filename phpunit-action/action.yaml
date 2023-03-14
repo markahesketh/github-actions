@@ -8,14 +8,6 @@ branding:
 description: 'Run PHPUnit via GithubAction.'
 
 inputs:
-  auth:
-    description: Composer personal access token (to access private repositories)
-    required: true
-
-  repo_token:
-    description: GitHub token (to access private repositories)
-    required: true
-
   composer_install_arguments:
     description: Options for the install
     required: true
@@ -37,6 +29,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    COMPOSER_AUTH: ${{ inputs.auth }}
-    REPO_TOKEN: ${{ inputs.repo_token }}

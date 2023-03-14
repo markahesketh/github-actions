@@ -1,9 +1,9 @@
 #!/bin/sh -l
 
-echo "Composer token is: ${COMPOSER_AUTH}"
-echo "Repo token is: ${REPO_TOKEN}"
-echo "GitHub token is: ${GITHUB_TOKEN}"
-
+if [ -n "$GITHUB_TOKEN" ]; then
+  echo "Configuring composer with GITHUB_TOKEN"
+  composer config github-oauth.github.com $GITHUB_TOKEN
+fi
 composer install ${INPUT_COMPOSER_INSTALL_ARGUMENTS}
 
 locale-gen ${INPUT_LOCALE}
