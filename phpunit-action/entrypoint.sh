@@ -1,6 +1,8 @@
 #!/bin/sh -l
 
-echo $COMPOSER_AUTH
+echo "Composer token is: ${COMPOSER_AUTH}"
+echo "Repo token is: ${REPO_TOKEN}"
+echo "GitHub token is: ${GITHUB_TOKEN}"
 
 composer install ${INPUT_COMPOSER_INSTALL_ARGUMENTS}
 
