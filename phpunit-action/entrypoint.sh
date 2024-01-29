@@ -3,6 +3,9 @@
 if [ -n "$GITHUB_TOKEN" ]; then
   echo "Configuring composer with GITHUB_TOKEN"
   composer config github-oauth.github.com $GITHUB_TOKEN
+elif
+  echo "GITHUB_TOKEN not set in environment"
+  exit 1
 fi
 composer install ${INPUT_COMPOSER_INSTALL_ARGUMENTS}
 
