@@ -1,0 +1,54 @@
+name: 'setup-venditan-commerce'
+author: 'Venditan'
+branding:
+  icon: 'settings'
+  color: 'blue'
+description: 'Setup the environment for Venditan projects'
+
+inputs:
+  php-version:
+    description: 'The version of PHP to use'
+    required: true
+    default: '7.4'
+  ssh-private-key:
+    description: 'The SSH private key to use'
+    required: true
+  github-token:
+    description: 'The GitHub token to use'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup SSH Key
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ inputs.ssh-private-key }}
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php-version }}
+        extensions: mbstring
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+
+    - name: Get composer cache directory
+      id: composer-cache
+      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+    - name: Cache composer packages
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+
+    - name: Install Composer packages
+      run: |
+        echo -e '[url "git@github.com:"]\n  insteadOf = https://github.com/' >> ~/.gitconfig
+        composer config --global github-oauth.github.com ${{ inputs.github-token }}
+        ./composer-dependencies.sh ci
